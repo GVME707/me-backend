@@ -1,7 +1,7 @@
 var express = require("express");
 var cors = require("cors");
 var app = express();
-require('dotenv').config()
+require("dotenv").config();
 
 app.use(cors());
 
@@ -22,6 +22,11 @@ app.get("/hello", function (req, res, next) {
 
 app.get("/users", function (req, res, next) {
   connection.query("SELECT * FROM `users`", function (err, results) {
+    if (err) {
+      console.error(err);
+      res.status(500).send(err);
+      return;
+    }
     res.json(results);
   });
 });
