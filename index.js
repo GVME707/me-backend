@@ -31,6 +31,6 @@ app.get("/users", function (req, res, next) {
   });
 });
 
-app.listen(5000, function () {
+app.listen(5000, '0.0.0.0', function () {
   console.log("CORS-enabled web server listening on port 5000");
 });
