@@ -3,8 +3,6 @@ var cors = require("cors");
 var app = express();
 require("dotenv").config();
 
-app.use(cors());
-
 // get the client
 const mysql = require("mysql2");
 
@@ -15,6 +13,8 @@ const connection = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 });
+
+app.use(cors());
 
 app.get("/hello", function (req, res, next) {
   res.json({ msg: "This is CORS-enabled for all origins!" });
@@ -31,6 +31,6 @@ app.get("/users", function (req, res, next) {
   });
 });
 
-app.listen(5000, '0.0.0.0', function () {
+app.listen(5000, "0.0.0.0", function () {
   console.log("CORS-enabled web server listening on port 5000");
 });
